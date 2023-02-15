@@ -11,3 +11,9 @@ def say_hi(name):
     print(f'Hello {name} how are you')
 
 say_hi('Dell')
+
+def difference(a, b):
+    x = a - b
+    print(x)
+
+difference(8, 5)
