@@ -102,6 +102,13 @@ for n in range(1_000_000, 100_000_000):
            break
 print(primes)
 
+def fibo():
+    n = 100
+    a, b = 0, 1
+    while a <= n:
+        print(a, ' ', end=' ')
+        a, b = b, a + b
+fibo()
 
 
 
