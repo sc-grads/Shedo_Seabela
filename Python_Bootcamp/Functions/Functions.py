@@ -30,3 +30,15 @@ def get_vat(price, vat_percentage):
 get_vat(200, 5)
 
 # Capture the returned value in a new variable called vat.
+
+x = 3
+
+
+def increment():
+    global x
+    x = x + 1
+
+
+# Calling the function
+increment()
+print(x)
