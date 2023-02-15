@@ -34,3 +34,25 @@ for i in visits.values():
 
 percentage = {i: (x / total_visits) * 100 for i, x in visits.items()}
 print(percentage)
+
+# Challenges
+
+listt = [1, 0, 0, 2, 1, 1, 2, 3, 1, 5, 3, 5, 1]
+listt = list(set(listt))
+print(listt)
+#
+New_list = ['Python', 'Java', 'C++', 'Golang', 'Solidity', 'Bash']
+new_dic = dict()
+for i in New_list:
+    new_dic[i] = len(i)
+
+print(new_dic)
+
+#
+d1 = {'x': 5, 'a': 3, 'c': 2, 'b': 0}
+for i in sorted(d1.keys()):
+    print(f'{i} -> {d1[i]}')
+
+#
+view = sorted(d1.items(), key = lambda x: x[1])
+print(view)
