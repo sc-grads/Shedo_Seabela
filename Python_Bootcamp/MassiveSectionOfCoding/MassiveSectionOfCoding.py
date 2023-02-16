@@ -35,3 +35,7 @@ names1 = {'John', 'Marry', 'Lena', 'Pollux'}
 names2 = {'Dan', 'Arthur', 'Marry', 'Lena', 'Castor'}
 names = names1 & names2
 names = list(names)
+
+phone1 = ['1111', '2222', '2222', '1111']
+phone2 = ['1111', '3333', '3333', '1111']
+phone_numbers = set(phone1) | set(phone2)
