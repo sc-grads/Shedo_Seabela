@@ -63,7 +63,67 @@ print(years_unique)
 
 words = ['Anna', 'Car', 'Civic', 'Screen', 'Level', 'Cat', 'Mom']
 
-# List comprehension that constructs a list of palindromes from names list
 palindromes = [items for items in words if items.lower() == items[::-1].lower()]
 
 print(palindromes)
+
+
+def remove_from_list(my_list, item):
+    """
+    Function that removes an item from a list.
+    """
+    while (item in my_list):
+        my_list.remove(item)
+
+
+list1 = [1, 2, 1, 1, 1, 1, 3]
+
+remove_from_list(list1, 1)
+
+print(list1)
+
+
+def vowel_count(my_str):
+    """
+    This function counts the number of vowels in a string
+    """
+    vowels = 'aeiou'
+    my_str = my_str.lower()  # ignoring the case (we consider only lower-case letters)
+
+    # Dictionary that stores the result.
+    result = dict()
+
+    for char in my_str:
+        if char in vowels:
+            if char in result.keys():
+                result[char] += 1
+            else:
+                result[char] = 1
+
+    return result
+
+
+r = vowel_count('Awesome')
+print(r)
+
+r = vowel_count('Wow! Python is great!')
+print(r)
+
+
+def counter(my_str):
+    vowels = 'aeiou'
+    no_of_vowels = 0
+
+    # letter case doesn't matter
+    my_str = my_str.lower()  # make a lowercase copy of my_str
+
+    for char in vowels:
+        no_of_vowels += my_str.count(char)
+
+    no_of_consonants = len(my_str) - no_of_vowels
+
+    return (no_of_vowels, no_of_consonants)
+
+
+print(counter('Python'))
+print(counter('BeautifUl'))
