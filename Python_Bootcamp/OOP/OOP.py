@@ -27,10 +27,14 @@ print(r1.__doc__)
 print(f'Robot name: {r1.name}')
 print(r1.__doc__)
 
+## Defining a class
 class Circle:
     def __init__(self, radius):
         self.radius = radius
+    def __str__(self):
+        return str(self.radius)
 
 
-# Create an instance called moon with radius 1737
+
 moon = Circle(1737)
+print(moon)
