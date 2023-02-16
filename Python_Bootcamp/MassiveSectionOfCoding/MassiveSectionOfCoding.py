@@ -17,3 +17,6 @@ print(vat)
 my_list = [1, 2.3, 'abc', (5, 6, 'x', 'y')]
 my_var = str(my_list[1]) + my_list[2][0] + my_list[-1][-1]
 print(my_var)
+
+languages = ['English', 'Python', 'Java', 'Golang', 'German']
+languages = languages[1:4]
