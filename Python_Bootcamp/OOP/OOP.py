@@ -26,3 +26,11 @@ r1 = Robot('R1', 2023)
 print(r1.__doc__)
 print(f'Robot name: {r1.name}')
 print(r1.__doc__)
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+
+# Create an instance called moon with radius 1737
+moon = Circle(1737)
