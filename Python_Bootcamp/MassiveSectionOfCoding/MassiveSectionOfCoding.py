@@ -39,3 +39,31 @@ names = list(names)
 phone1 = ['1111', '2222', '2222', '1111']
 phone2 = ['1111', '3333', '3333', '1111']
 phone_numbers = set(phone1) | set(phone2)
+
+mac = ['b4:6d:83:77:85:f3', 'b4:6d:83:77:85:f3', 'a4:6d:83:77:85:f4', 'c4:6d:83:77:85:f3', 'b4:6d:83:77:85:f3']
+
+# New empty list
+mac_unique = list()
+
+# Iterate over the list
+for item in mac:
+    if item not in mac_unique:  # check if each element is already in mac_unique list
+        mac_unique.append(item)  # add it if it's not in the mac_unique list
+
+print(mac_unique)
+
+years = [2010, 2010, 2011, 2011, 2012, 2012, 2012]
+
+# New list with unique elements
+years_unique = []
+
+[years_unique.append(item) for item in years if item not in years_unique]
+
+print(years_unique)
+
+words = ['Anna', 'Car', 'Civic', 'Screen', 'Level', 'Cat', 'Mom']
+
+# List comprehension that constructs a list of palindromes from names list
+palindromes = [items for items in words if items.lower() == items[::-1].lower()]
+
+print(palindromes)
