@@ -22,3 +22,6 @@ languages = ['English', 'Python', 'Java', 'Golang', 'German']
 languages = languages[1:4]
 
 my_list = list(range(-20, 10, 3))
+
+days = [10, 11, 13, 14, 15]
+days.insert(2,12)
