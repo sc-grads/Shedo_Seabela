@@ -30,3 +30,8 @@ message = 'Wow! Python is great'
 vowels = 'aeio'
 no_vowels = [x for x in message if x not in vowels and x != ' ']
 print(no_vowels)
+
+names1 = {'John', 'Marry', 'Lena', 'Pollux'}
+names2 = {'Dan', 'Arthur', 'Marry', 'Lena', 'Castor'}
+names = names1 & names2
+names = list(names)
