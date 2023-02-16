@@ -157,3 +157,39 @@ with open('show_arp.txt', 'r', newline='') as f:
         ip_mac.append((ip, mac))
 
     print(ip_mac)
+
+area = lambda length: length ** 2
+
+print(area(2.5))
+
+PI = 3.141592653589793
+
+# Convert it to 4 decimal points, format() returns a string
+PI = format(PI, '.5f')
+PI = float(PI)  # convert PI which is a string to a float
+
+print(PI)
+
+countries = {'us': 'United States of America', 'br': 'Brazil', 'de': 'Germany', 'at': 'Austria'}
+
+keys = sorted(countries.keys())
+
+for k in keys:
+    print(countries[k])
+
+salaries = {'John': 50000, 'Anne': 66000, 'Antonio': 48000}
+
+taxes = {k: v * 0.1 for k, v in salaries.items()}
+print(taxes)
+
+f = open('a.txt', 'r')
+
+f.seek(4)
+
+word = f.read(5)
+print(word)
+
+f.close()
+
+with open('workout.txt', 'a') as file:
+    file.write('May 25:8800\n')
