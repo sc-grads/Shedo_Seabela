@@ -20,3 +20,5 @@ print(my_var)
 
 languages = ['English', 'Python', 'Java', 'Golang', 'German']
 languages = languages[1:4]
+
+my_list = list(range(-20, 10, 3))
