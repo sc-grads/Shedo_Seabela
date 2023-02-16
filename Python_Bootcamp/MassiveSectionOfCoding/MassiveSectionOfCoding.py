@@ -13,3 +13,7 @@ price = phone['Price']
 vat = format(price * 0.19, '.2f')
 vat = float(vat)
 print(vat)
+
+my_list = [1, 2.3, 'abc', (5, 6, 'x', 'y')]
+my_var = str(my_list[1]) + my_list[2][0] + my_list[-1][-1]
+print(my_var)
