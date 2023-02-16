@@ -25,3 +25,8 @@ my_list = list(range(-20, 10, 3))
 
 days = [10, 11, 13, 14, 15]
 days.insert(2,12)
+
+message = 'Wow! Python is great'
+vowels = 'aeio'
+no_vowels = [x for x in message if x not in vowels and x != ' ']
+print(no_vowels)
