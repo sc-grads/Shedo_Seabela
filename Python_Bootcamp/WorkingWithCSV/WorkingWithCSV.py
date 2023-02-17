@@ -36,3 +36,15 @@ with open('people1.csv') as f:
     reader = csv.reader(f)
     for row in reader:
         print(row)
+
+with open('people2.csv', 'w') as f:
+    writer = csv.writer(f, delimiter=':')
+    for item in people:
+        writer.writerow(item)
+
+
+
+with open('people2.csv') as f:
+    reader = csv.reader(f, delimiter=':')
+    for row in reader:
+        print(row)
