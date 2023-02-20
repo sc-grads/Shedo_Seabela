@@ -1,30 +1,10 @@
 import pandas as pd
 import xlrd
+dfs = pd.read_html('https://en.wikipedia.org/wiki/List_of_European_cities_by_population_within_city_limits')
 
-df = pd.read_excel('salaries.xlsx', sheet_name='Sheet1')
+df = dfs[0]
+dfs = pd.read_html('https://www.nasdaq.com/symbol/amzn/historical')
+df = dfs[2]
 
-
-df['Salary'].mean()
-df['Salary'].max()
-df['Salary'].min()
-df['Salary'].count()
-df['Salary'].std()
-df['Country'].unique()
-df['Country'].nunique()
-
-df['Country'].value_counts()
-
-df.sort_values('Salary', ascending=False)
-
-c = df.groupby('Country')
-
-c.max()
-c.min()
-c.sum()
-c.mean()
-c.std()
-df1 = c.max()
-df1.loc['UK']
-df.groupby('Country').min().loc['USA']
-df.groupby('Country').describe()
-df.groupby('Country').describe().transpose()
+i = df.iloc[:, 1].idxmax()
+df.iloc[i]
