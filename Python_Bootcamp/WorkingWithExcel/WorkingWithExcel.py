@@ -130,6 +130,24 @@ wb = openpyxl.load_workbook('store.xlsx')
 sheet = wb['Products']
 
 my_cell = sheet['B4']
+# Challenges
+sheet = wb.active
+sheet.title = 'COMPANY SALES'
+
+rows = (
+    ('Year', 'Sales'),
+    (2017, 150000),
+    (2018, 180000),
+    (2019, 210000),
+    (2020, 125000),
+
+)
+
+for r in rows:
+    sheet.append(r)
+
+
+wb.save('sales.xlsx')
 
 print(dir(openpyxl.styles))
 
@@ -155,3 +173,76 @@ new_cell.font = new_font
 
 wb.save('store.xlsx')
 
+
+print('\n')
+sheet = wb.active
+
+items = list()
+for row in sheet.values:
+    items.append(row)
+
+print(items)
+
+
+vat = list()
+for row in items[1:]:
+    element = (row[0], row[1] * 0.15)
+    vat.append(element)
+
+print(vat)
+
+
+wb.create_sheet('VAT')
+sheet = wb['VAT']
+
+sheet['A1'] = 'Year'
+sheet['B1'] = 'VAT'
+
+for row in vat:
+    sheet.append(row)
+
+wb = openpyxl.load_workbook('sales2.xlsx')
+
+sheet = wb.active
+
+
+cell = sheet['B6']
+cell.value = '=sum(B2:B5)'
+
+
+cell = sheet['C6']
+
+cell.value = 'Total Sales'
+font = Font(name='Tahoma', size=16, color=colors.RED, bold=True, italic=False, strike=False)
+cell_b6 = sheet['B6']
+cell_b6.font = font
+
+cell_c6 = sheet['c6']
+cell_c6.font = font
+
+def csv2excel(filein, fileout, delim=','):
+    import openpyxl, csv
+    with open(filein, 'r') as f:
+        reader = csv.reader(f, delimiter=delim)
+
+        wb = openpyxl.Workbook()
+        sheet = wb.active
+        for row in reader:
+            sheet.append(row)
+
+        wb.save(fileout)
+
+csv2excel('people3.csv', 'teachers.xlsx')
+
+wb.save('sales3.xlsx')
+
+def excel2csv(filein, fileout):
+    import openpyxl, csv
+    wb = openpyxl.load_workbook(filein)
+    sheet = wb.active
+    with open(fileout, 'w') as f:
+        writer = csv.writer(f)
+        for row in sheet.values:
+            writer.writerow(row)
+
+excel2csv('books.xlsx', 'booklist.csv')
