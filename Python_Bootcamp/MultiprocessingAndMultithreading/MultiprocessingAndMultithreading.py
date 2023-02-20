@@ -1,6 +1,5 @@
-import multiprocessing as mp
+import threading
 import time
-
 
 def name_and_time(name):
     print(f'Hello {name}, current time is {time.time()}')
@@ -8,23 +7,21 @@ def name_and_time(name):
     time.sleep(2)
     print('After sleeping ... exiting function.')
 
-
 if __name__ == '__main__':
-    process_list = list()
-
+    thread_list = list()
 
     for i in range(10):
 
-        process = mp.Process(target=name_and_time, args=('Andrei',))
-        process_list.append(process)
+        thread = threading.Thread(target=name_and_time, args=('Andrei',))
+        thread_list.append(thread)
+
+    for t in thread_list:
+        t.start()
 
 
-    for p in process_list:
-        p.start()
-
-
-    for p in process_list:
-        p.join()
+    for t in thread_list:
+        t.join()
 
     print('Other instructions of the main module...')
     print('End of Script')
+
