@@ -70,3 +70,14 @@ for c, d, e in sheet['c2:e12']:
     e.value = c.value * d.value
 
 wb.save('store.xlsx')
+print('\n')
+sheet['A1'] = 'Year'
+sheet['B1'] = 'Sales'
+
+sales = {2017: 700000, 2018: 800000, 2019: 900000}
+
+
+for k, v in sales.items():
+    sheet.append((k, v))
+
+wb.save('sales.xlsx')
