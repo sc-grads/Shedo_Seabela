@@ -119,3 +119,39 @@ destination = wb.copy_worksheet(source)
 print(destination.title)
 
 wb.save('store.xlsx')
+
+from openpyxl.styles import *
+
+
+from copy import copy
+
+wb = openpyxl.load_workbook('store.xlsx')
+
+sheet = wb['Products']
+
+my_cell = sheet['B4']
+
+print(dir(openpyxl.styles))
+
+font = Font(name='Tahoma', size=16, color=colors.RED, bold=True, italic=True, strike=False)
+my_cell.font = font
+
+fill = PatternFill(fill_type='solid', fgColor=colors.YELLOW)
+my_cell.fill = fill
+
+double_border_green = Side(border_style='double', color=colors.GREEN)
+thin_border_red = Side(border_style='thin', color='FF0000')
+my_cell.border = Border(left=double_border_green, right=thin_border_red, top=double_border_green,
+                        bottom=thin_border_red)
+
+alignment = Alignment(horizontal='right', vertical='center')
+my_cell.alignment = alignment
+
+
+new_cell = sheet['B10']
+new_font = copy(my_cell.font)
+new_font.color = colors.GREEN
+new_cell.font = new_font
+
+wb.save('store.xlsx')
+
