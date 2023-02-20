@@ -1,27 +1,25 @@
-import threading
-import time
+import multiprocessing as mp
 
-def name_and_time(name):
-    print(f'Hello {name}, current time is {time.time()}')
-    print('Sleeping for 2 seconds ...')
-    time.sleep(2)
-    print('After sleeping ... exiting function.')
+def increment(counter):
+    counter.value += 1
+
+def my_increment(my_counter):
+    my_counter += 1
+
 
 if __name__ == '__main__':
-    thread_list = list()
+    my_counter = 1
+    counter = mp.Value('i', 1)
+    process = mp.Process(target=increment, args=(counter,))
+    process.start()
+    process.join()
+
+    print(f'counter of type multiprocessing.Value is {counter.value}')
+
 
     for i in range(10):
+        process = mp.Process(target=my_increment, args=(my_counter,))
+        process.start()
+        process.join()
 
-        thread = threading.Thread(target=name_and_time, args=('Andrei',))
-        thread_list.append(thread)
-
-    for t in thread_list:
-        t.start()
-
-
-    for t in thread_list:
-        t.join()
-
-    print('Other instructions of the main module...')
-    print('End of Script')
-
+    print(f'my_counter of type integer is {my_counter}')
