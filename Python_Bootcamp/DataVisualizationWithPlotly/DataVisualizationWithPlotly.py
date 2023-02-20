@@ -1,37 +1,31 @@
 import plotly.offline as pyo
 import plotly.graph_objs as go
-import random
 
 pyo.init_notebook_mode()
 
-x_values = list(range(50))
-y_values = [random.randrange(20, 25) for x in range(50)]
-trace1 = go.Scatter(x=x_values, y=y_values, mode='lines', name='Just Lines')
+labels = ['Nitrogen', 'Oxygen', 'Other']
+values = [78.09, 20.95, 0.96]
+my_colors = ['#0066cc', '#ffd700', '#dc0000']
 
-y_values = [random.randrange(15, 20) for x in range(50)]
-trace2 = go.Scatter(x=x_values, y=y_values, mode='markers', name='Just Markers')
+data = [go.Pie(labels=labels, values=values, marker=dict(colors=my_colors))]
 
-y_values = [random.randrange(10, 15) for x in range(50)]
-trace3 = go.Scatter(x=x_values, y=y_values, mode='lines+markers', name='Markers and Lines')
-
-data = [trace1, trace2, trace3]
-layout = go.Layout(title='Simple Line Chart',
-                   xaxis={'title': 'This is the X Axis'},
-                   yaxis=dict(title='This is the Y Asis')
-                   )
-
-fig = go.Figure(data=data, layout=layout)
+layout = go.Layout(title='Air Composition')
+fig = go.Figure(data, layout)
 
 pyo.iplot(fig)
-
 import pandas as pd
 
-df = pd.read_csv('gold_annual_price.csv')
+df = pd.read_html('https://en.wikipedia.org/wiki/List_of_continents_by_population')
+type(df[0])
+t1 = df[0]
+labels = t1.loc[1:, 'Continent']
+values = t1.loc[1:, '% of world pop.']
+values[7] = values[7].lstrip('<')
 
-trace = go.Scatter(x=df.Date, y=df.Price, mode='lines', name='Gold Price')
+data = [go.Pie(labels=labels, values=values)]
 
-data = [trace]
-layout = go.Layout(title='Gold Monthly Price (1950-2019)')
-fig = go.Figure(data=data, layout=layout)
+layout = go.Layout(title='World Population By Continent, 2016')
+fig = go.Figure(data, layout)
 
 pyo.iplot(fig)
+
