@@ -93,3 +93,29 @@ sheet = wb['Sales 2018']
 sheet['B14'] = '=sum(B2:B13)'
 
 wb.save('store.xlsx')
+
+print(wb.sheetnames)
+
+sheet = wb['Products']
+
+print(dir(sheet))
+
+#
+sheet.title = 'Products for sale'
+
+
+
+print(sheet.sheet_format)
+print(sheet.sheet_properties)
+
+wb.create_sheet('Turnover1', 0)
+
+sheet1 = wb['Turnover1']
+
+wb.remove(sheet1)
+
+source = wb['Turnover']
+destination = wb.copy_worksheet(source)
+print(destination.title)
+
+wb.save('store.xlsx')
