@@ -1,33 +1,35 @@
 import multiprocessing as mp
-def squares(numbers, squares_list):
-    for n in numbers:
-        squares_list.append(n ** 2)
-    print(f'square_list inside process {squares_list}')
-def cubes(numbers, result):
-    i = 0
-    for num in numbers:
-        result[i] = num ** 3
-        i += 1
-    print(f'result Array inside process/function: {result[::]}')
+import time
+def deposit(balance, lock):
+    for i in range(100):
+        time.sleep(0.01)
+        lock.acquire()
+        balance.value += 1
+        lock.release()
+
+def withdraw(balance, lock):
+    for i in range(100):
+        time.sleep(0.01)
+        lock.acquire()
+        balance.value -= 1
+        lock.release()
+
 
 if __name__ == '__main__':
+    balance = mp.Value('i', 500)
+    print(f'Balance BEFORE running processes: {balance.value}')
 
-    numbers = [1, 2, 3]
-    squares_list = list()
-
-
-    p = mp.Process(target=squares, args=(numbers, squares_list))
-    p.start()
-    p.join()
+    lock = mp.Lock()
 
 
-    print(f'squares_list outsite process {squares_list}')
+    p1 = mp.Process(target=deposit, args=(balance, lock))
+    p2 = mp.Process(target=withdraw, args=(balance, lock))
 
-    result = mp.Array('i', len(numbers))
-
-
-    p1 = mp.Process(target=cubes, args=(numbers, result))
     p1.start()
-    p1.join()
+    p2.start()
 
-    print(f'result Array outside process {result[::]}')
+    p1.join()
+    p2.join()
+
+
+    print(f'Balance AFTER running processes: {balance.value}')
