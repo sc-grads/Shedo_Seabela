@@ -4,19 +4,19 @@ connection = sqlite3.connect('my_database.db')
 
 c = connection.cursor()
 
+
+
+
 sql = """
-        CREATE TABLE IF NOT EXISTS employees (
-         id INTEGER,
-         name VARCHAR(64),
-         department VARCHAR(32),
-         phone VARCHAR(16),
-         email VARCHAR(32)
-        )
-        """
+INSERT INTO employees (id, name, department, phone, email) VALUES (1, "John Smith", "IT", "+123456789", "johns@mycompany.com");
+INSERT INTO employees VALUES (2, "Anne Barker", "Accounting", "+155345789", "anne@mycompany.com");
+INSERT INTO employees VALUES (3, "Antony Winter", "Sales", "0042345678911", "danw@mycompany.com");
+"""
 
 
-c.execute(sql)
+c.executescript(sql)
 
 connection.commit()
+
 
 connection.close()
