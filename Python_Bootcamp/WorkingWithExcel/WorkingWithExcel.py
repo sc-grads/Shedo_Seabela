@@ -58,3 +58,15 @@ for row in sheet.rows:
 
 for row in sheet.values:
     print(row)
+
+print('\n')
+sheet['d2'] = 400
+
+new_product = (11, 'Tablet', 12, 600, 12 * 600)  # this is a tuple
+sheet.append(new_product)
+
+
+for c, d, e in sheet['c2:e12']:
+    e.value = c.value * d.value
+
+wb.save('store.xlsx')
