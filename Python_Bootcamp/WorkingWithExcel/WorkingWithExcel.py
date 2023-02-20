@@ -81,3 +81,15 @@ for k, v in sales.items():
     sheet.append((k, v))
 
 wb.save('sales.xlsx')
+
+print('\n')
+
+sheet = wb['Products']
+
+for c, d, e in sheet['c2:e12']:
+    e.value = f'={c.coordinate}*{d.coordinate}'
+sheet = wb['Sales 2018']
+
+sheet['B14'] = '=sum(B2:B13)'
+
+wb.save('store.xlsx')
