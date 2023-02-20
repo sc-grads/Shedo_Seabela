@@ -1,37 +1,30 @@
 import pandas as pd
+import xlrd
 
-df = pd.read_csv('countries_of_the_world.csv',
-                 delimiter=',')
-
-df.info()
+df = pd.read_excel('salaries.xlsx', sheet_name='Sheet1')
 
 
-pd.set_option('display.max_rows', 100)
-pd.set_option('display.max_columns', 50)
-pd.set_option('display.width', 1000)
+df['Salary'].mean()
+df['Salary'].max()
+df['Salary'].min()
+df['Salary'].count()
+df['Salary'].std()
+df['Country'].unique()
+df['Country'].nunique()
 
-df.head()
-df.head(10)
+df['Country'].value_counts()
 
+df.sort_values('Salary', ascending=False)
 
-df[df['Population'] > 100_000_000][['Country', 'Population', 'Area (sq. mi.)']]
+c = df.groupby('Country')
 
-
-df[df['Population'] > 100_000_000][['Country', 'Population', 'Area (sq. mi.)']].sort_values('Population',
-                                                                                            ascending=False)
-
-x = df['GDP ($ per capita)'].idxmax()
-df.iloc[x]
-
-
-region = df['Region'].str.strip().isin(['EASTERN EUROPE', 'WESTERN EUROPE'])  # this is a boolean series
-df[region].sort_values('Population', ascending=False)
-
-df.nlargest(3, 'Population')
-
-df.nlargest(5, 'GDP ($ per capita)')
-
-df.nlargest(n=2, columns='Birthrate')
-
-
-df.nsmallest(5, 'Area (sq. mi.)')
+c.max()
+c.min()
+c.sum()
+c.mean()
+c.std()
+df1 = c.max()
+df1.loc['UK']
+df.groupby('Country').min().loc['USA']
+df.groupby('Country').describe()
+df.groupby('Country').describe().transpose()
