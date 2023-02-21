@@ -1,31 +1,29 @@
 import asyncio
-import aiohttp
 
-import aiofiles
+async def run(cmd):
+
+    proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+
+    stdout, stderr = await proc.communicate()
+
+
+    print(f'{cmd} exited with status code: {proc.returncode}]')
+
+    if stdout:
+        print(f'STDOUT:\n{stdout.decode()}')
+
+    if stderr:
+        print(f'STDERROR:\n{stderr.decode()}')
 
 
 
-async def fetch(url):
-    async with aiohttp.ClientSession() as session:
-        response = await session.get(
-            url)
-        html = await response.text()
-        return html
-
-async def write_to_file(file, text):
-    async with aiofiles.open(file, 'w') as f:
-        await f.write(text)
-
-async def main(urls):
+async def main(commads):
     tasks = []
-    for url in urls:
-        file = f'{url.split("//")[-1]}.txt'
-        html = await fetch(url)
-        tasks.append(write_to_file(file, html))
-
+    for cmd in commads:
+        tasks.append(run(cmd))
 
     await asyncio.gather(*tasks)
 
 
-urls = ('https://python.org', 'https://stackoverflow.com', 'https://google.com')
-asyncio.run(main(urls))
+commands = ('ifconfig', 'ls', 'who', 'ping -c 1 8.8.8.8')
+asyncio.run(main(commands))
