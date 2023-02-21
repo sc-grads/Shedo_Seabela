@@ -1,35 +1,31 @@
 import asyncio
-import time
+import aiohttp
 
-
-def sync_f():
-    print('one', end=' ')
-    time.sleep(
-        1)
-    print('two', end=' ')
+import aiofiles
 
 
 
-async def async_f():
-    print('one', end=' ')
-    await asyncio.sleep(1)
+async def fetch(url):
+    async with aiohttp.ClientSession() as session:
+        response = await session.get(
+            url)
+        html = await response.text()
+        return html
 
-    print('two', end=' ')
+async def write_to_file(file, text):
+    async with aiofiles.open(file, 'w') as f:
+        await f.write(text)
 
+async def main(urls):
+    tasks = []
+    for url in urls:
+        file = f'{url.split("//")[-1]}.txt'
+        html = await fetch(url)
+        tasks.append(write_to_file(file, html))
 
-async def main():
-    tasks = [async_f() for _ in range(3)]
 
     await asyncio.gather(*tasks)
 
 
-s = time.time()
-asyncio.run(main())
-print(f'Execution time (ASYNC):{time.time() - s}')
-
-print('\n')
-
-s = time.time()
-for _ in range(3):
-    sync_f()
-print(f'Execution time (SYNC):{time.time() - s}')
+urls = ('https://python.org', 'https://stackoverflow.com', 'https://google.com')
+asyncio.run(main(urls))
