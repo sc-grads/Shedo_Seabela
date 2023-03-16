@@ -1,7 +1,7 @@
 select * from inserted
 union 
 select * from deleted
-
+-- hdhdjjs
 select convert(char(5),'hi') as Greeting
 union all
 select convert(char(11),'hello there') as GreetingNow
@@ -98,7 +98,7 @@ drop table tblExample
 drop table tblIsCoalesce
 drop table tblIsNull
 
-7. Let’s build our MERGE statement
+7. Letï¿½s build our MERGE statement
 BEGIN TRAN
 MERGE INTO tblTransaction as T
 USING tblTransactionNew as S
@@ -113,7 +113,7 @@ ROLLBACK TRAN
 -- tblTransaction (no) - tblTransactionNew (yes)
 -- 1 tblTransaction - 1 tblTransactionNew
 -- 1 tblTransaction - multiple rows TblTransactionNew
-8.  Let’s expand our MERGE statement
+8.  Letï¿½s expand our MERGE statement
 SELECT DateOfTransaction, EmployeeNumber, COUNT(*) AS NumberOfRows
 FROM tblTransactionNew 
 GROUP BY DateOfTransaction, EmployeeNumber
@@ -158,7 +158,7 @@ WHEN NOT MATCHED BY SOURCE THEN
 OUTPUT inserted.*, deleted.* , $action;
 --Select * from tblTransaction ORDER BY EmployeeNumber, DateOfTransaction
 ROLLBACK TRAN
-11. Let’s create our first procedure
+11. Letï¿½s create our first procedure
 create proc NameEmployees as
 begin
 	select EmployeeNumber, EmployeeFirstName, EmployeeLastName
@@ -294,7 +294,7 @@ DECLARE @NumberRows int, @ReturnStatus int
 exec @ReturnStatus = NameEmployees @EmployeeNumberFrom = 323, @EmployeeNumberTo = 327, @NumberOfRows = @NumberRows OUTPUT
 select @NumberRows as MyRowCount, @ReturnStatus as Return_Status
 
--- Try … Catch
+-- Try ï¿½ Catch
 --if exists (select * from sys.procedures where name='AverageBalance')
 if object_ID('AverageBalance','P') IS NOT NULL
 drop proc AverageBalance
