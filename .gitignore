@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /venv/
 .idea
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -43,3 +44,53 @@ testem.log
 .DS_Store
 Thumbs.db
 
+=======
+/venv/
+.idea
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+Ecommerce/Frontend/RegisterPage/node_modules
+/Ecommerce/Frontend/RegisterPage/README.md
+/Ecommerce/Frontend/RegisterPage/.gitignore
+/Ecommerce/Frontend/RegisterPage/.vscode/
+>>>>>>> 4a445f915230be4fe493bcc8d63dbf8dfdaa92ad
