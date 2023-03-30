@@ -42,7 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-Ecommerce/Frontend/RegisterPage/node_modules
-/Ecommerce/Frontend/RegisterPage/README.md
-/Ecommerce/Frontend/RegisterPage/.gitignore
-/Ecommerce/Frontend/RegisterPage/.vscode/
+
