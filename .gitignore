@@ -89,8 +89,25 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-Ecommerce/Frontend/RegisterPage/node_modules
 /Ecommerce/Frontend/RegisterPage/README.md
 /Ecommerce/Frontend/RegisterPage/.gitignore
 /Ecommerce/Frontend/RegisterPage/.vscode/
 >>>>>>> 4a445f915230be4fe493bcc8d63dbf8dfdaa92ad
+/Ecommerce/Frontend/LuxuryVehicles/.vscode/
+/Ecommerce/Frontend/LuxuryVehicles/README.md
+/Ecommerce/Frontend/LuxuryVehicles/.gitignore
+/Ecommerce/Frontend/LuxuryVehicles/.angular/
+/Ecommerce/Frontend/LuxuryVehicles/tsconfig.spec.json
+/Ecommerce/Frontend/LuxuryVehicles/tsconfig.json
+/Ecommerce/Frontend/LuxuryVehicles/tsconfig.app.json
+/Ecommerce/Frontend/LuxuryVehicles/package-lock.json
+/Ecommerce/Frontend/LuxuryVehicles/package.json
+/Ecommerce/Frontend/LuxuryVehicles/angular.json
+/Ecommerce/Frontend/LuxuryVehicles/src/assets/.gitkeep
+/Ecommerce/Frontend/LuxuryVehicles/src/favicon.ico
+/Ecommerce/Frontend/LuxuryVehicles/src/index.html
+/Ecommerce/Frontend/LuxuryVehicles/src/main.ts
+/Ecommerce/Frontend/LuxuryVehicles/src/styles.css
+/Ecommerce/Frontend/LuxuryVehicles/src/app/app.module.ts
+/Ecommerce/Frontend/LuxuryVehicles/src/app/app-routing.module.ts
+
