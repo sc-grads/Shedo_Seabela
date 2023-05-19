@@ -112,3 +112,4 @@ Thumbs.db
 /Ecommerce/Frontend/LuxuryVehicles/src/app/app-routing.module.ts
 
 /Ecommerce/Frontend/Cars/.gitignore
+/Ecommerce/Backend/venv/
