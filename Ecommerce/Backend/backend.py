@@ -34,5 +34,34 @@ def register():
     # return success message to Angular
     return jsonify({'message': 'Registration successful'})
 
+@app.route('/login', methods=['POST'])
+def login():
+    # get login details from request body
+    data = request.json
+    
+    username = data['username']
+    password = data['password']
+
+    # connect to the database
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    # insert registration details into database
+    query = "SELECT * FROM UserInfo WHERE username = ? AND password_re = ?"
+    cursor.execute(query, (username, password))
+    result = cursor.fetchone()
+    conn.commit()
+    if result:
+        # Authentication successful
+        return jsonify({'message': 'Login successful'})
+    else:
+        # Authentication failed
+        return jsonify({'message': 'Invalid username or password'})
+
+    # close database connection
+    cursor.close()
+    conn.close()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
