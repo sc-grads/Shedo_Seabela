@@ -88,24 +88,10 @@ body {
 
 
 <body>
-  <div class="signup-form">
-    <form (ngSubmit)="onSubmit()" class="form-horizontal">
-      <div class="row">
-        <div class="col-8 offset-4">
-          <h2>Welcome</h2>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div>
-          <button type="submit" class="btn btn-primary btn-lg">View Products</button>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div>
-          <button type="submit" class="btn btn-primary btn-lg">Manage Orders</button>
-        </div>
-      </div>
-    </form>
+
+  <div class="col-8 offset-4">
+<button type="submit" class="btn btn-primary btn-lg" (click)="navigateToHome()">Go to Home</button>
 
   </div>
+
 </body>
