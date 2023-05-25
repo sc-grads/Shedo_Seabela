@@ -1,7 +1,22 @@
-<p>hdsjdsjfjdssfsjfsj</p>
+<p>hjyt65</p>
 
-<div *ngFor="let product of products">
-  <h3>{{ product.product }}</h3>
-  <p>{{ product.product_description }}</p>
-  <p>{{ product.product_price }}</p>
+
+<!--
+
+
+<img src="https://static.usedcars.co.ke/wp-content/uploads/sites/9/2022/12/01080514/nissan-gtr-skyline-r34-horsepower.jpg">
+-->
+<h1>Products</h1>
+<div class="row">
+  <div class="col-md-3" *ngFor="let product of products">
+    <div class="card">
+      <img [src]="product.ProductImage" alt="Product Image" class="card-img-top img-fluid" style="height: 200px; object-fit: contain;">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.Description_re }}</h5>
+        <p class="card-text">R{{ product.Price }}</p>
+        <p class="card-text">{{ product.Product }}</p>
+
+      </div>
+    </div>
+  </div>
 </div>
