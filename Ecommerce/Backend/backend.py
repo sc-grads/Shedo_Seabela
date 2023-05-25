@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import pyodbc
+from collections import namedtuple
 from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app,origins=['http://localhost:4200'])
@@ -63,7 +64,7 @@ def login():
     conn.close()
 
 
-@app.route('/products', methods=['GET'])
+@app.route('/items', methods=['GET'])
 def products():
     
     data = request.json
@@ -81,18 +82,26 @@ def products():
     
 
     # return success message to Angular
-    products = []
-    for row in result:
-        product = {
-            'product_id': row[0],
-            'product': row[1],
-            'product_descption': row[2],
-            'product_price': row[3]
+    #products = []
+    products =  namedtuple('Product', [column[0] for column in cursor.description])
+    return [dict(products._make(row)._asdict()) for row in result]
+    # for row in result:
+    #     product = {
+    #         'product_id': row[0],
+    #         'product': row[1],
+    #         'product_descption': row[2],
+    #         'product_price': row[3],
+    #         'productimage': row[4]
             
-        }
-        products.append(product)
-
-    return jsonify({'products': products})
+    #     }
+    #     products.append(product)
+    #     print(row[0])
+        
+    # print(products)
+    #response = jsonify({'products': products})
+    #response.headers.add('Content-Type', 'application/json')
+    
+    #return jsonify(products)#response
     # close database connection
     cursor.close()
     conn.close()
