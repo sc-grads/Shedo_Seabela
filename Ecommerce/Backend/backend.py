@@ -63,7 +63,39 @@ def login():
     conn.close()
 
 
+@app.route('/products', methods=['GET'])
+def products():
     
+    data = request.json
+    
+    # connect to the database
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    # retrive all products
+    query = "SELECT * FROM ProductInfo"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    conn.commit
+
+    
+
+    # return success message to Angular
+    products = []
+    for row in result:
+        product = {
+            'product_id': row[0],
+            'product': row[1],
+            'product_descption': row[2],
+            'product_price': row[3]
+            
+        }
+        products.append(product)
+
+    return jsonify({'products': products})
+    # close database connection
+    cursor.close()
+    conn.close()
 
 
 if __name__ == '__main__':
