@@ -31,8 +31,5 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  getProducts() {
-  //const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-}
 }
