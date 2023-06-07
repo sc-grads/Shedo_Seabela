@@ -65,46 +65,35 @@ def login():
 
 
 @app.route('/items', methods=['GET'])
-def products():
-    
-    data = request.json
-    
-    # connect to the database
-    conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
+def get_products():
+    try:
+        # Connect to the database
+        conn = pyodbc.connect(conn_str)
+        cursor = conn.cursor()
 
-    # retrive all products
-    query = "SELECT * FROM ProductInfo"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    conn.commit
+        # Retrieve all products
+        query = "SELECT * FROM ProductInfo"
+        cursor.execute(query)
+        rows = cursor.fetchall()
 
+        # Convert the query results to a list of dictionaries
+        columns = [column[0] for column in cursor.description]
+        products = [dict(zip(columns, row)) for row in rows]
+
+        print(products)
+        # Close the database connection
+        cursor.close()
+        conn.close()
+
+        # Return the products as JSON response
+        return jsonify(products)
+
+    except pyodbc.Error as e:
+        # Handle database connection or query errors
+        error_message = "An error occurred while retrieving products: {}".format(str(e))
+        return jsonify({'error': error_message}), 500
     
 
-    # return success message to Angular
-    #products = []
-    products =  namedtuple('Product', [column[0] for column in cursor.description])
-    return [dict(products._make(row)._asdict()) for row in result]
-    # for row in result:
-    #     product = {
-    #         'product_id': row[0],
-    #         'product': row[1],
-    #         'product_descption': row[2],
-    #         'product_price': row[3],
-    #         'productimage': row[4]
-            
-    #     }
-    #     products.append(product)
-    #     print(row[0])
-        
-    # print(products)
-    #response = jsonify({'products': products})
-    #response.headers.add('Content-Type', 'application/json')
-    
-    #return jsonify(products)#response
-    # close database connection
-    cursor.close()
-    conn.close()
 
 
 if __name__ == '__main__':

@@ -14,7 +14,7 @@ export class AdminComponent {
 constructor(private router: Router) {}
 
   navigateToHome() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['admin/orders']);
   }
 
 }
