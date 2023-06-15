@@ -13,8 +13,10 @@ export class AdminComponent {
 
 constructor(private router: Router) {}
 
-  navigateToHome() {
+  navigateToOrders() {
     this.router.navigate(['admin/orders']);
   }
-
+navigateToItems() {
+    this.router.navigate(['admin/items']);
+  }
 }
