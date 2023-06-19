@@ -53,6 +53,14 @@ def login():
     result = cursor.fetchone()
     conn.commit()
     if result:
+        # based on the truthness of the result we now want to check the role of the user
+        query = "SELECT Assignment FROM UserInfo WHERE username = ? AND password_re = ?"
+        cursor.execute(query, (username, password))
+        role = cursor.fetchone()
+        if role[0] == "Admin_re":
+            print(role)
+            return jsonify({'message': 'Admin'})
+        
         # Authentication successful
         return jsonify({'message': 'Login successful'})
     else:
@@ -80,7 +88,7 @@ def get_products():
         columns = [column[0] for column in cursor.description]
         products = [dict(zip(columns, row)) for row in rows]
 
-        print(products)
+        
         # Close the database connection
         cursor.close()
         conn.close()
