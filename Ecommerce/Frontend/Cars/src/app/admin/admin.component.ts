@@ -13,6 +13,10 @@ export class AdminComponent {
 
 constructor(private router: Router) {}
 
+  navigateToEdit() {
+    this.router.navigate(['admin/handleproduct']);
+  }
+
   navigateToOrders() {
     this.router.navigate(['admin/orders']);
   }
