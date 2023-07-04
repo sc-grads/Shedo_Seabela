@@ -57,8 +57,9 @@ def login():
         query = "SELECT Assignment FROM UserInfo WHERE username = ? AND password_re = ?"
         cursor.execute(query, (username, password))
         role = cursor.fetchone()
+        
         if role[0] == "Admin_re":
-            print(role)
+            # print(role)
             return jsonify({'message': 'Admin'})
         
         # Authentication successful
