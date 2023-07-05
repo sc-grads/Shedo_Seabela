@@ -104,6 +104,33 @@ def get_products():
     
 
 
+@app.route('/addproducts', methods=['POST'])
+def Addproduct():
+    # get details from request body
+    data = request.json
+    
+    Product = data['Product']
+    Description = data['Description']
+    Price = data['Price']
+    ProductImage = data['ProductImage']
+    print(Price)
+
+    # connect to the database
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    # insert product details into database
+    query = "INSERT INTO ProductInfo( Product, Description_re, Price, ProductImage ) VALUES (?, ?, ?, ?)"
+    values = ( Product, Description, Price, ProductImage)
+    cursor.execute(query, values)
+    conn.commit()
+
+    # close database connection
+    cursor.close()
+    conn.close()
+
+    # return success message to Angular
+    return jsonify({'message': 'Item added successful'})
 
 if __name__ == '__main__':
     app.run(debug=True)
