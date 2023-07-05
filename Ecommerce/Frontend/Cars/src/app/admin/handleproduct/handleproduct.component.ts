@@ -10,29 +10,31 @@ import { Router } from '@angular/router';
 export class HandleproductComponent {
 
 
-  username: string = '';
+  Product: string = '';
 
-  password: string = '';
-  confirmpassword: string = '';
+  Description: string = '';
+  Price: string = '';
+  ProductImage: string = '';
 
 
   constructor(private http: HttpClient,private router: Router) { }
 
   onSubmit() {
     const data = {
-      'username': this.username,
-      'password': this.password,
-      'confirmpassword': this.confirmpassword
+      'Product': this.Product,
+      'Description': this.Description,
+      'Price': this.Price,
+      'ProductImage':this.ProductImage
     };
 
-    this.http.post('http://127.0.0.1:5000//register', data).subscribe(response => {
+    this.http.post('http://127.0.0.1:5000//addproducts', data).subscribe(response => {
       console.log(response);
       // handle success response here
     }, error => {
       console.error(error);
       // handle error response here
     });
-    this.router.navigate(['/login']);
+    this.router.navigate(['/admin/items']);
   }
 
 
