@@ -102,7 +102,7 @@ body {
         <h5 class="card-title">{{ product.Product}}</h5>
         <p class="card-text">R{{ product.Price }}</p>
         <p class="card-text">{{ product.Description_re }}</p>
-        <button class ='card'>  Update </button>
+        <button class ='card'>  Update </button>  <button type="submit" class="btn btn-primary btn-lg" (click)="deleteProduct(product.ProductID)" > Delete</button>
         <!--<button (click)="addToCart(product.product_ID)" class="btn btn-primary">Add to Cart</button> -->
       </div>
     </div>
