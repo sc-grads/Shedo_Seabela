@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,json
 import pyodbc
 from collections import namedtuple
 from flask_cors import CORS, cross_origin
@@ -113,7 +113,6 @@ def Addproduct():
     Description = data['Description']
     Price = data['Price']
     ProductImage = data['ProductImage']
-    print(Price)
 
     # connect to the database
     conn = pyodbc.connect(conn_str)
@@ -132,5 +131,22 @@ def Addproduct():
     # return success message to Angular
     return jsonify({'message': 'Item added successful'})
 
+@app.route('/deleteproducts/<int:ProductID>', methods=['DELETE'])
+def DeleteProducts(ProductID):
+    # data = request.json
+    # Productid = data['ProductID']
+    conn = pyodbc.connect(conn_str)
+    cursor = conn.cursor()
+
+    
+    # query = "DELETE FROM ProductInfo WHERE ProductID = "
+    # values = ( Productid,)
+    cursor.execute(f"DELETE FROM ProductInfo WHERE ProductID ={ProductID} ")
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+    return jsonify({'message': 'Product deleted successfully'})
+    
 if __name__ == '__main__':
     app.run(debug=True)

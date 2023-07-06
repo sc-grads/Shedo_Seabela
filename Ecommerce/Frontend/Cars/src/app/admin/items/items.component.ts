@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 //
 interface product{
+
   ProductImage: string;
   Price: number;
   Description_re: string;
@@ -30,6 +31,21 @@ export class ItemsComponent implements OnInit {
 
     });
   }
+
+deleteProduct(ProductID: number): void {
+
+  this.http.delete<any>(`http://127.0.0.1:5000/deleteproducts/${ProductID}`)
+    .subscribe(
+        () => {
+          alert('Product deleted successfully');
+          this.ngOnInit();
+        },
+      error => {
+        console.error(error);
+        // Handle error, show error message, etc.
+      }
+    );
+}
 
 
 }
