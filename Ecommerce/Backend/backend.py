@@ -147,6 +147,22 @@ def DeleteProducts(ProductID):
     cursor.close()
     conn.close()
     return jsonify({'message': 'Product deleted successfully'})
+
+@app.route('/AddToCart', methods=['POST'])
+def AddToCart(ProductID):
+    
+    # conn = pyodbc.connect(conn_str)
+    # cursor = conn.cursor()
+
+    
+    # query = "DELETE FROM ProductInfo WHERE ProductID = "
+    # values = ( Productid,)
+    # cursor.execute(f"DELETE FROM ProductInfo WHERE ProductID ={ProductID} ")
+    # conn.commit()
+    print('Hello am working')
+    # cursor.close()
+    # conn.close()
+    return jsonify({'message': 'Product deleted successfully'})
     
 if __name__ == '__main__':
     app.run(debug=True)
